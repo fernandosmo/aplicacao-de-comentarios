@@ -1,4 +1,6 @@
 import React from 'react';
+import { formatRelative } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 import './Coments.css';
 import userImage from './user.png';
@@ -11,7 +13,11 @@ const Coments = (props) => {
         <h2 className="name">{props.name}:</h2>
         <p className="email">{props.email}</p>
         <p className="message">{props.children}</p>
-        <p className="date">{props.date.toString()}</p>
+        <p className="date">
+          {formatRelative(props.date, new Date(), {
+            locale: ptBR,
+          })}
+        </p>
         <button className="button" onClick={props.onRemove}>
           &times;
         </button>
